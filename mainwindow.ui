@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1542</width>
+    <height>849</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="helpButtonLeft">
+    <property name="geometry">
+     <rect>
+      <x>1250</x>
+      <y>610</y>
+      <width>291</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: red; /* 按钮背景颜色 */
+    border-radius: 0px; /* 圆角半径，确保是圆形 */
+    width: 100px; /* 按钮宽度 */
+    height: 100px; /* 按钮高度 */
+    color: white; /* 字体颜色 */
+    border: 2px solid darkred; /* 边框颜色 */
+    font-family: &quot;Microsoft YaHei&quot;; /* 设置字体为黑体 */
+    font-weight: bold; /* 字体加粗 */
+    font-size: 16px; /* 字体大小 */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>紧急求助</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="askLLMButton">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>660</y>
+      <width>991</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>语音助手</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="helpButtonRight">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>610</y>
+      <width>291</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: red; /* 按钮背景颜色 */
+    border-radius: 0px; /* 圆角半径，确保是圆形 */
+    width: 100px; /* 按钮宽度 */
+    height: 100px; /* 按钮高度 */
+    color: white; /* 字体颜色 */
+    border: 2px solid darkred; /* 边框颜色 */
+    font-family: &quot;Microsoft YaHei&quot;; /* 设置字体为黑体 */
+    font-weight: bold; /* 字体加粗 */
+    font-size: 16px; /* 字体大小 */
+}
+</string>
+    </property>
+    <property name="text">
+     <string>紧急求助</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="timeWidget">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>10</y>
+      <width>581</width>
+      <height>171</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="carStatusBox">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>190</y>
+      <width>491</width>
+      <height>411</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="userWidget">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>10</y>
+      <width>201</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20px;&quot;&gt;Welcome, Elon Musk&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="avatarWidget">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>10</y>
+      <width>71</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="positionWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>361</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="navigateHomeTimeWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="navigateWorkTimeWidget">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>100</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="cityWidget">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>10</y>
+      <width>281</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="weatherWidget">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>100</y>
+      <width>281</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navigateHomeButton">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>610</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>回家</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navigateButton">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>610</y>
+      <width>391</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>导航</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="navigateWorkButton">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>610</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>上班</string>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>190</y>
+      <width>1051</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1049</width>
+       <height>409</height>
+      </rect>
+     </property>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1051</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout"/>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="settingsButton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>780</y>
+      <width>481</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>设置</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>100</y>
+      <width>271</width>
+      <height>81</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="mediaButton">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>780</y>
+      <width>481</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>媒体</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="userButton">
+    <property name="geometry">
+     <rect>
+      <x>1258</x>
+      <y>10</y>
+      <width>271</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background: transparent; /* 透明背景 */
+    border: none; /* 无边框 */
+    color: black; /* 按钮文字颜色 */
+    font-size: 16px; /* 字体大小 */
+    font-weight: bold; /* 字体加粗 */
+    font-family: &quot;Arial&quot;, sans-serif; /* 字体 */
+    padding: 10px 20px; /* 内边距 */
+}
+
+QPushButton:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* 悬停时的淡黑色背景（半透明） */
+    color: blue; /* 悬停时文字颜色 */
+}
+
+QPushButton:pressed {
+    background-color: rgba(0, 0, 0, 0.2); /* 按下时的较深黑色背景（半透明） */
+    color: red; /* 按下时文字颜色 */
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>askLLMButton</zorder>
+   <zorder>helpButtonLeft</zorder>
+   <zorder>helpButtonRight</zorder>
+   <zorder>timeWidget</zorder>
+   <zorder>carStatusBox</zorder>
+   <zorder>userWidget</zorder>
+   <zorder>avatarWidget</zorder>
+   <zorder>positionWidget</zorder>
+   <zorder>navigateHomeTimeWidget</zorder>
+   <zorder>navigateWorkTimeWidget</zorder>
+   <zorder>cityWidget</zorder>
+   <zorder>weatherWidget</zorder>
+   <zorder>navigateHomeButton</zorder>
+   <zorder>navigateButton</zorder>
+   <zorder>navigateWorkButton</zorder>
+   <zorder>scrollArea</zorder>
+   <zorder>settingsButton</zorder>
+   <zorder>textBrowser</zorder>
+   <zorder>mediaButton</zorder>
+   <zorder>userButton</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

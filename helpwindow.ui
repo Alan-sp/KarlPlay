@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>helpWindow</class>
+ <widget class="QDialog" name="helpWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1021</width>
+    <height>646</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>380</y>
+     <width>511</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>我没有遇到危险</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="helpButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>380</y>
+     <width>511</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #ff4d4d; /* 正常状态下的红色背景 */
+    color: white; /* 正常状态下的白色文字 */
+    border-radius: 0px; /* 圆角 */
+    border: 2px solid darkred; /* 边框颜色 */
+    padding: 10px 20px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    font-weight: bold; /* 字体加粗 */
+    font-family: &quot;Arial&quot;, sans-serif; /* 字体 */
+}
+
+QPushButton:hover {
+    background-color: #ff3333; /* 悬停时的颜色 */
+}
+
+QPushButton:pressed {
+    background-color: #cc0000; /* 点击时的深红色背景 */
+    color: white; /* 点击时保持白色文字 */
+    border: 2px solid darkred; /* 保持边框颜色 */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>呼叫求助</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

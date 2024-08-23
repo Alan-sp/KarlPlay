@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Radio</class>
+ <widget class="QWidget" name="Radio">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1542</width>
+    <height>849</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="musicButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>70</y>
+     <width>531</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>音乐</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="videoButton">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>420</y>
+     <width>531</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>视频</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="photoButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>420</y>
+     <width>531</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>图片</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="radioButton">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>70</y>
+     <width>531</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>收音机</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>151</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QGraphicsView" name="graphicsView">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1542</width>
+     <height>849</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>graphicsView</zorder>
+  <zorder>musicButton</zorder>
+  <zorder>videoButton</zorder>
+  <zorder>photoButton</zorder>
+  <zorder>radioButton</zorder>
+  <zorder>backButton</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

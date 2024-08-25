@@ -22,6 +22,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    struct UserInfo {
+        int userID;
+        QString username;
+        QString password;
+        QString phone;
+        float favoriteTemp;
+        int favoriteStyle;
+    }UserInfo;
+    bool fetchUserInfo(int ID, struct UserInfo &userInfo);
+
 
 public slots:
     void toHelp();
@@ -36,4 +46,6 @@ private:
     Radio *newMediaWidget;
     User *newUserWidget;
 };
+
+void createDatabaseAndUserTable();
 #endif // MAINWINDOW_H

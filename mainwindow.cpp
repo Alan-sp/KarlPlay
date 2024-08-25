@@ -11,11 +11,14 @@ MainWindow::MainWindow(QWidget *parent)
     , newUserWidget(nullptr)
 {
     ui->setupUi(this);
-
+    UserInfo.userID = 0;
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     int x = (screenGeometry.width() - this->width()) / 2;
     int y = (screenGeometry.height() - this->height()) / 2;
     this->move(x, y);
+
+    createDatabaseAndUserTable();
+    fetchUserInfo(0, UserInfo);
 
     //紧急求助按钮
     QPushButton *helpButtonLeft = ui->helpButtonLeft;
@@ -34,6 +37,11 @@ MainWindow::MainWindow(QWidget *parent)
     //个人中心
     QPushButton *userButton = ui->userButton;
     connect(userButton, &QPushButton::clicked, this, &MainWindow::toUser);
+    QTextBrowser *userBrowser = ui->userWidget;
+    userBrowser->setText("Welcome, " + UserInfo.username + "!");
+
+
+
 
 }
 
@@ -64,3 +72,50 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+bool MainWindow::fetchUserInfo(int ID, struct UserInfo &userInfo) {
+    // 创建并打开数据库连接
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("./KarlPlay.db");
+
+    if (!db.open()) {
+        qDebug() << "Failed to open database:" << db.lastError().text();
+        return false;
+    }
+
+    QSqlQuery query(db);
+    QString queryString = "SELECT id, username, password, phone, favoriteTemp, favoriteStyle FROM user WHERE id = :userid";
+
+    query.prepare(queryString);
+    query.bindValue(":userid", ID);  // 绑定参数
+
+    if (!query.exec()) {
+        qDebug() << "Query execution failed:" << query.lastError().text();
+        db.close();
+        return false;
+    }
+
+    if (query.next()) {
+        // 提取数据
+        userInfo.userID = query.value(0).toInt();
+        userInfo.username = query.value(1).toString();
+        userInfo.password = query.value(2).toString();
+        userInfo.phone = query.value(3).toString();
+        userInfo.favoriteTemp = query.value(4).toFloat();
+        userInfo.favoriteStyle = query.value(5).toInt();
+
+        qDebug() << "User found:";
+        qDebug() << "UserID:" << userInfo.userID;
+        qDebug() << "Username:" << userInfo.username;
+        qDebug() << "Password:" << userInfo.password;
+        qDebug() << "Phone:" << userInfo.phone;
+        qDebug() << "Favorite Temperature:" << userInfo.favoriteTemp;
+        qDebug() << "Favorite Style:" << userInfo.favoriteStyle;
+
+        db.close();
+        return true;
+    } else {
+        qDebug() << "No user found with UserID:" << ID;
+        db.close();
+        return false;
+    }
+}

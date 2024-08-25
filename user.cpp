@@ -6,13 +6,11 @@ User::User(QWidget *parent) :
   , ui(new Ui::User)
 {
     ui->setupUi(this);
-    QWidget *parentWidget = parent;
 
     QPushButton *toSettingButton = ui->toSettingButton;
     connect(toSettingButton, &QPushButton::clicked, this, &User::backSettings);
     QPushButton *toDesktopButton = ui->toDesktopButton;
     connect(toDesktopButton, &QPushButton::clicked, this, &User::backDesktop);
-
 }
 
 User::~User()
@@ -28,3 +26,51 @@ void User::backDesktop(){
     this->hide();
     this->parentWidget()->hide();
 }
+
+void createDatabaseAndUserTable() {
+    // 检查数据库文件是否存在
+    QString dbPath = "./KarlPlay.db";
+    if (!QFile::exists(dbPath)) {
+        qDebug() << "Database file does not exist. Creating a new one.";
+    } else {
+        qDebug() << "Database file already exists.";
+    }
+
+    // 创建并打开数据库连接
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(dbPath);
+
+    if (!db.open()) {
+        qDebug() << "Failed to open or create database:" << db.lastError().text();
+        return;
+    }
+
+    qDebug() << "Database opened or created successfully.";
+
+    // 创建user表的SQL语句
+    QString createTableQuery = R"(
+        CREATE TABLE IF NOT EXISTS user (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            password TEXT NOT NULL,
+            phone TEXT NOT NULL,
+            favoriteTemp FLOAT,
+            favoriteStyle INTEGER
+        )
+    )";
+    QString insertFirstLine = QString(
+        "INSERT INTO user (id, username, password, phone, favoriteTemp, favoriteStyle) "
+        "VALUES (0, 'please log in', 'NULL', 'NULL', 26, 0)"
+    );
+    QSqlQuery query(db);
+    query.exec(createTableQuery);
+    QSqlQuery addFirstLine(db);
+    addFirstLine.exec(insertFirstLine);
+
+    // 关闭数据库连接
+    db.close();
+}
+
+
+
+

@@ -18,24 +18,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     helpwindow.cpp \
+    login.cpp \
     main.cpp \
     mainwindow.cpp \
     radio.cpp \
     settingswidget.cpp \
+    signin.cpp \
     user.cpp
 
 HEADERS += \
     helpwindow.h \
+    login.h \
     mainwindow.h \
     radio.h \
     settingswidget.h \
+    signin.h \
     user.h
 
 FORMS += \
     helpwindow.ui \
+    login.ui \
     mainwindow.ui \
     radio.ui \
     settingswidget.ui \
+    signin.ui \
     user.ui
 
 # Default rules for deployment.

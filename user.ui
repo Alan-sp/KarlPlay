@@ -53,6 +53,32 @@
      <string>桌面</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="logInButton">
+    <property name="geometry">
+     <rect>
+      <x>1370</x>
+      <y>0</y>
+      <width>171</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>登录</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="signInButton">
+    <property name="geometry">
+     <rect>
+      <x>1210</x>
+      <y>0</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>注册</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

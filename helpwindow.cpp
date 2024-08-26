@@ -6,7 +6,7 @@ helpWindow::helpWindow(QDialog *parent) :
     ui(new Ui::helpWindow)
 {
     ui->setupUi(this);
-
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     QPushButton *backButton = ui->backButton;
     connect(backButton, &QPushButton::clicked,this, &helpWindow::backMain);
 }

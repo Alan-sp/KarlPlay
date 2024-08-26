@@ -31,7 +31,7 @@ public:
         int favoriteStyle;
     }UserInfo;
     bool fetchUserInfo(int ID, struct UserInfo &userInfo);
-
+    void refresh();
 
 public slots:
     void toHelp();

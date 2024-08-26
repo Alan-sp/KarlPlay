@@ -4,6 +4,8 @@
 User::User(QWidget *parent) :
     QWidget(parent)
   , ui(new Ui::User)
+  , signInWidget(nullptr)
+  , logInWidget(nullptr)
 {
     ui->setupUi(this);
 
@@ -11,6 +13,11 @@ User::User(QWidget *parent) :
     connect(toSettingButton, &QPushButton::clicked, this, &User::backSettings);
     QPushButton *toDesktopButton = ui->toDesktopButton;
     connect(toDesktopButton, &QPushButton::clicked, this, &User::backDesktop);
+    QPushButton *logInButton = ui->logInButton;
+    connect(logInButton, &QPushButton::clicked, this, &User::toLogIn);
+    QPushButton *signInButton = ui->signInButton;
+    connect(signInButton, &QPushButton::clicked, this, &User::toSignIn);
+
 }
 
 User::~User()
@@ -25,6 +32,18 @@ void User::backSettings(){
 void User::backDesktop(){
     this->hide();
     this->parentWidget()->hide();
+}
+void User::toLogIn(){
+    if(!logInWidget){
+        logInWidget = new LogIn(this);
+    }
+    logInWidget->exec();
+}
+void User::toSignIn(){
+    if(!signInWidget){
+        signInWidget = new SignIn(this);
+    }
+    signInWidget->exec();
 }
 
 void createDatabaseAndUserTable() {
@@ -62,11 +81,12 @@ void createDatabaseAndUserTable() {
         "INSERT INTO user (id, username, password, phone, favoriteTemp, favoriteStyle) "
         "VALUES (0, 'please log in', 'NULL', 'NULL', 26, 0)"
     );
-    QSqlQuery query(db);
-    query.exec(createTableQuery);
+    QSqlQuery createInit(db);
+    createInit.exec(createTableQuery);
     QSqlQuery addFirstLine(db);
     addFirstLine.exec(insertFirstLine);
-
+    createInit.finish();
+    addFirstLine.finish();
     // 关闭数据库连接
     db.close();
 }

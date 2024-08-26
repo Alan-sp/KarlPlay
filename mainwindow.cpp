@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     , newUserWidget(nullptr)
 {
     ui->setupUi(this);
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     UserInfo.userID = 0;
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
     int x = (screenGeometry.width() - this->width()) / 2;
@@ -39,10 +40,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(userButton, &QPushButton::clicked, this, &MainWindow::toUser);
     QTextBrowser *userBrowser = ui->userWidget;
     userBrowser->setText("Welcome, " + UserInfo.username + "!");
-
-
-
-
 }
 
 void MainWindow::toHelp(){
@@ -90,6 +87,7 @@ bool MainWindow::fetchUserInfo(int ID, struct UserInfo &userInfo) {
 
     if (!query.exec()) {
         qDebug() << "Query execution failed:" << query.lastError().text();
+        query.finish();
         db.close();
         return false;
     }
@@ -110,12 +108,17 @@ bool MainWindow::fetchUserInfo(int ID, struct UserInfo &userInfo) {
         qDebug() << "Phone:" << userInfo.phone;
         qDebug() << "Favorite Temperature:" << userInfo.favoriteTemp;
         qDebug() << "Favorite Style:" << userInfo.favoriteStyle;
-
+        query.finish();
         db.close();
         return true;
     } else {
         qDebug() << "No user found with UserID:" << ID;
+        query.finish();
         db.close();
         return false;
     }
+}
+
+void MainWindow::refresh(){
+    ui->userWidget->setText(UserInfo.username);
 }

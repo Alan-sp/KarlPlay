@@ -243,7 +243,7 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="settingsButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>770</x>
       <y>780</y>
       <width>481</width>
       <height>71</height>
@@ -261,19 +261,6 @@ p, li { white-space: pre-wrap; }
       <width>271</width>
       <height>81</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="mediaButton">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>780</y>
-      <width>481</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>媒体</string>
     </property>
    </widget>
    <widget class="QPushButton" name="userButton">
@@ -310,6 +297,19 @@ QPushButton:pressed {
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="mediaButton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>780</y>
+      <width>481</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>媒体</string>
+    </property>
+   </widget>
    <zorder>askLLMButton</zorder>
    <zorder>helpButtonLeft</zorder>
    <zorder>helpButtonRight</zorder>
@@ -328,8 +328,8 @@ QPushButton:pressed {
    <zorder>scrollArea</zorder>
    <zorder>settingsButton</zorder>
    <zorder>textBrowser</zorder>
-   <zorder>mediaButton</zorder>
    <zorder>userButton</zorder>
+   <zorder>mediaButton</zorder>
   </widget>
  </widget>
  <resources/>

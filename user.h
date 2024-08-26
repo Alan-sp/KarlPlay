@@ -13,6 +13,8 @@
 #include <QDebug>            // QDebug 类，用于输出调试信息
 #include <QDir>              // QDir 类，用于处理目录路径
 #include <QFile>
+#include "signin.h"
+#include "login.h"
 
 namespace Ui {
 class User;
@@ -29,10 +31,13 @@ public:
 public slots:
     void backSettings();
     void backDesktop();
+    void toLogIn();
+    void toSignIn();
 
 private:
     Ui::User *ui;
-
+    SignIn *signInWidget;
+    LogIn *logInWidget;
 
 
 };

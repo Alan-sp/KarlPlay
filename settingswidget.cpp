@@ -7,7 +7,7 @@ SettingsWidget::SettingsWidget(QWidget *parent) :
   , ui(new Ui::SettingsWidget)
 {
     ui->setupUi(this);
-
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     QPushButton *backButton = ui->backButton;
     connect(backButton, &QPushButton::clicked,this, &SettingsWidget::backMain);
 

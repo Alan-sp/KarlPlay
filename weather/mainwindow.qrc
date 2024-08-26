@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>weather.png</file>
+    </qresource>
+</RCC>

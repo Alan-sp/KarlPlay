@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/new/prefix1/img">
+        <file>images/forward.png</file>
+        <file>images/forward-fast.png</file>
+        <file>images/pause.png</file>
+        <file>images/play.png</file>
+        <file>images/rewind.png</file>
+        <file>images/rewind-button-circle.png</file>
+        <file>images/volume-down.png</file>
+        <file>images/volume-mute.png</file>
+        <file>images/angle-double-small-right.png</file>
+        <file>images/angle-small-right.png</file>
+        <file>images/folder-open.png</file>
+        <file>images/home.png</file>
+        <file>images/wifi.png</file>
+        <file>images/angle-left.png</file>
+        <file>images/angle-right.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>

@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTextBrowser>
 #include <QGraphicsGridLayout>
+#include <QScrollArea>
 #include "helpwindow.h"
 #include "settingswidget.h"
 #include "radio.h"

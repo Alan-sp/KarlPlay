@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(userButton, &QPushButton::clicked, this, &MainWindow::toUser);
     QTextBrowser *userBrowser = ui->userWidget;
     userBrowser->setText("Welcome, " + UserInfo.username + "!");
+
 }
 
 void MainWindow::toHelp(){

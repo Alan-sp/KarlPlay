@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SignIn</class>
+ <widget class="QDialog" name="SignIn">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>501</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>430</y>
+     <width>200</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="signInButton">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>430</y>
+     <width>200</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>注册</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>371</width>
+     <height>81</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="usernameBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>120</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>270</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="passwordBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>170</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="rePasswordBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>220</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="phoneBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>270</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>320</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_7">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>370</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="favoriteStyleBox">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>370</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSlider" name="favoriteTempSlider">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>330</y>
+     <width>261</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>QSlider {
+    min-height: 20px; /* 设置滑块最小高度 */
+    max-height: 20px; /* 设置滑块最大高度 */
+}
+
+QSlider::groove:horizontal {
+    border: 1px solid #999999;
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5,
+                                stop: 0 #00bfff, stop: 0.5 #ffff00, stop: 1 #ff4500); /* 渐变色代表从冷到热 */
+    height: 10px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    background: #ffffff; /* 滑块颜色 */
+    border: 1px solid #5c5c5c;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0; /* 将滑块居中对齐 */
+    border-radius: 7px; /* 圆形滑块 */
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5,
+                                stop: 0 #00bfff, stop: 1 #ffff00); /* 表示滑块左侧的区域 */
+    border: 1px solid #4a4a4a;
+    height: 10px;
+    border-radius: 5px;
+}
+
+QSlider::add-page:horizontal {
+    background: #ff4500; /* 表示滑块右侧的区域 */
+    border: 1px solid #4a4a4a;
+    height: 10px;
+    border-radius: 5px;
+}</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QSlider {
+    min-height: 20px; /* 设置滑块最小高度 */
+    max-height: 20px; /* 设置滑块最大高度 */
+}
+
+QSlider::groove:horizontal {
+    border: 1px solid #999999;
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5,
+                                stop: 0 #00bfff, stop: 0.5 #ffff00, stop: 1 #ff4500); /* 渐变色代表从冷到热 */
+    height: 10px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    background: #ffffff; /* 滑块颜色 */
+    border: 1px solid #5c5c5c;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0; /* 将滑块居中对齐 */
+    border-radius: 7px; /* 圆形滑块 */
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1: 0, y1: 0.5, x2: 1, y2: 0.5,
+                                stop: 0 #00bfff, stop: 1 #ffff00); /* 表示滑块左侧的区域 */
+    border: 1px solid #4a4a4a;
+    height: 10px;
+    border-radius: 5px;
+}
+
+QSlider::add-page:horizontal {
+    background: #ff4500; /* 表示滑块右侧的区域 */
+    border: 1px solid #4a4a4a;
+    height: 10px;
+    border-radius: 5px;
+}</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

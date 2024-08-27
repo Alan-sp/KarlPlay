@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     QTextBrowser *userBrowser = ui->userWidget;
     userBrowser->setText("Welcome, " + UserInfo.username + "!");
 
+
 }
 
 void MainWindow::toHelp(){
@@ -63,6 +64,7 @@ void MainWindow::toUser() {
     newSettingsWidget = new SettingsWidget(this);
     newSettingsWidget->show();
     newSettingsWidget->toUser();
+    connect(newSettingsWidget, &SettingsWidget::refreshMainpage, this, &MainWindow::refreshPage);
 }
 
 MainWindow::~MainWindow()
@@ -102,7 +104,7 @@ bool MainWindow::fetchUserInfo(int ID, struct UserInfo &userInfo) {
         userInfo.favoriteTemp = query.value(4).toFloat();
         userInfo.favoriteStyle = query.value(5).toInt();
 
-        qDebug() << "User found:";
+        qDebug() << "User found on Main:";
         qDebug() << "UserID:" << userInfo.userID;
         qDebug() << "Username:" << userInfo.username;
         qDebug() << "Password:" << userInfo.password;
@@ -120,6 +122,8 @@ bool MainWindow::fetchUserInfo(int ID, struct UserInfo &userInfo) {
     }
 }
 
-void MainWindow::refresh(){
-    ui->userWidget->setText(UserInfo.username);
+void MainWindow::refreshPage(){
+    qDebug() << "信号已接收";
+    ui->userWidget->setText("Welcome, WangYuxuan!");
+    this->update();
 }

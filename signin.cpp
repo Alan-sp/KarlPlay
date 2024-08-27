@@ -41,7 +41,11 @@ void SignIn::signIn(){
         QMessageBox::warning(this, "错误", "两次密码输入不一致！");
         ui->passwordBox->clear();
         ui->rePasswordBox->clear();
-    } else {
+    } else if(password == ""||username == ""){
+        QMessageBox::warning(this, "错误", "用户名密码不能为空！");
+        ui->passwordBox->clear();
+        ui->rePasswordBox->clear();
+    }else {
         // 弹出成功提示
         QMessageBox::information(this, "注册成功", "注册成功！");
         insertUserIntoDatabase();

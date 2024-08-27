@@ -12,6 +12,7 @@
 #include <QVariant>
 #include <QDebug>
 #include <QSqlError>
+#include <QObject>
 
 namespace Ui {
 class LogIn;
@@ -25,6 +26,8 @@ public:
     explicit LogIn(QWidget *parent = nullptr);
     ~LogIn();
 
+signals:
+    void signalRefreshMainWindow();
 
 public slots:
     void logIn();
@@ -39,6 +42,7 @@ private:
     float favoriteTemp;
     int favoriteStyle;
     void clean();
+    void refreshMainWindow();
 };
 
 #endif // LOGIN_H

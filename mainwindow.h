@@ -10,7 +10,7 @@
 #include "settingswidget.h"
 #include "radio.h"
 #include "user.h"
-
+#include "login.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -39,6 +39,7 @@ public slots:
     void toSettings();
     void toMedia();
     void toUser();
+    void refreshPage();
 
 private:
     Ui::MainWindow *ui;
@@ -46,6 +47,7 @@ private:
     SettingsWidget *newSettingsWidget;
     Radio *newMediaWidget;
     User *newUserWidget;
+    LogIn *logInPage;
 };
 
 void createDatabaseAndUserTable();

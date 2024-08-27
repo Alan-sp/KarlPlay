@@ -37,34 +37,55 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mediaButton, &QPushButton::clicked, this, &MainWindow::toMedia);
 
     //个人中心
-    QPushButton *userButton = ui->userButton;
-    connect(userButton, &QPushButton::clicked, this, &MainWindow::toUser);
-    QTextBrowser *userBrowser = ui->userWidget;
-    userBrowser->setText("Welcome, " + UserInfo.username + "!");
+    // 创建并设置 DraggableScrollArea 实例
+    DraggableScrollArea *draggableScrollArea = new DraggableScrollArea(this);
 
-    //app滑动窗口
-    QWidget *appScrollAreaWidget = ui->appScrollAreaContent;
+    // 创建 appScrollAreaWidget 和布局
+    QWidget *appScrollAreaWidget = new QWidget(draggableScrollArea);
     QHBoxLayout *appScrollAreaLayout = new QHBoxLayout(appScrollAreaWidget);
 
-    //app按钮列表
-    QPushButton *weatherButton = new QPushButton(this);
+    // 创建并连接 weatherButton
+    QPushButton *weatherButton = new QPushButton("Weather", this);
     connect(weatherButton, &QPushButton::clicked, this, &MainWindow::toWeather);
     appScrollAreaLayout->addWidget(weatherButton);
 
-
+    // 添加20个按钮到布局中
     for (int i = 0; i < 20; ++i) {
         QPushButton *button = new QPushButton(QString("Application %1").arg(i + 1));
-        button->resize(50,50);
+        button->setFixedSize(50, 50);  // 设置按钮大小
         appScrollAreaLayout->addWidget(button);
     }
+
+    // 设置布局为 appScrollAreaWidget 的布局
     appScrollAreaWidget->setLayout(appScrollAreaLayout);
-    appScrollAreaWidget->setMinimumSize(appScrollAreaWidget->sizeHint());
-    QScrollArea *appScrollArea = ui->appScrollArea;
-    appScrollArea->setWidgetResizable(true);
-    appScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
+    // 将 widget 设置为 DraggableScrollArea 的内容
+    draggableScrollArea->setWidget(appScrollAreaWidget);
+    draggableScrollArea->setWidgetResizable(true);
+    draggableScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
+    // 获取原来 appScrollArea 的位置和大小
+    QRect originalGeometry = ui->appScrollArea->geometry();
+
+    // 替换 ui 中的原有 appScrollArea
+    QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(ui->centralwidget->layout());
+    if (layout) {
+        layout->replaceWidget(ui->appScrollArea, draggableScrollArea);
+    } else {
+        // 如果没有布局，手动设置 geometry
+        draggableScrollArea->setGeometry(originalGeometry);
+    }
+
+    // 删除原有的 appScrollArea
+    delete ui->appScrollArea;
+
+    // 更新指针到新的 DraggableScrollArea
+    ui->appScrollArea = draggableScrollArea;
 }
+
+
+
+
 
 void MainWindow::toHelp(){
     newHelpWindow = new helpWindow();  // 创建 HelpWindow 实例

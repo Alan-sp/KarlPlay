@@ -13,6 +13,7 @@
 #include "user.h"
 #include "login.h"
 #include "./weather/mainwindowweather.h"
+#include "draggablescrollarea.h"
 
 
 QT_BEGIN_NAMESPACE

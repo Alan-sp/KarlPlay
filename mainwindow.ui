@@ -217,7 +217,7 @@ p, li { white-space: pre-wrap; }
      <string>上班</string>
     </property>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
+   <widget class="QScrollArea" name="appScrollArea">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -229,7 +229,7 @@ p, li { white-space: pre-wrap; }
     <property name="widgetResizable">
      <bool>true</bool>
     </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
+    <widget class="QWidget" name="appScrollAreaContent">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -325,7 +325,7 @@ QPushButton:pressed {
    <zorder>navigateHomeButton</zorder>
    <zorder>navigateButton</zorder>
    <zorder>navigateWorkButton</zorder>
-   <zorder>scrollArea</zorder>
+   <zorder>appScrollArea</zorder>
    <zorder>settingsButton</zorder>
    <zorder>textBrowser</zorder>
    <zorder>userButton</zorder>

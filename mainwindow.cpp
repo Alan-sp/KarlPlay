@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     , newSettingsWidget(nullptr)  // 初始化指针为 nullptr
     , newMediaWidget(nullptr)
     , newUserWidget(nullptr)
+    , mainWindowWeatherPage(nullptr)
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
@@ -41,6 +42,27 @@ MainWindow::MainWindow(QWidget *parent)
     QTextBrowser *userBrowser = ui->userWidget;
     userBrowser->setText("Welcome, " + UserInfo.username + "!");
 
+    //app滑动窗口
+    QWidget *appScrollAreaWidget = ui->appScrollAreaContent;
+    QHBoxLayout *appScrollAreaLayout = new QHBoxLayout(appScrollAreaWidget);
+
+    //app按钮列表
+    QPushButton *weatherButton = new QPushButton(this);
+    connect(weatherButton, &QPushButton::clicked, this, &MainWindow::toWeather);
+    appScrollAreaLayout->addWidget(weatherButton);
+
+
+    for (int i = 0; i < 20; ++i) {
+        QPushButton *button = new QPushButton(QString("Application %1").arg(i + 1));
+        button->resize(50,50);
+        appScrollAreaLayout->addWidget(button);
+    }
+    appScrollAreaWidget->setLayout(appScrollAreaLayout);
+    appScrollAreaWidget->setMinimumSize(appScrollAreaWidget->sizeHint());
+    QScrollArea *appScrollArea = ui->appScrollArea;
+    appScrollArea->setWidgetResizable(true);
+    appScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
 
 }
 
@@ -65,6 +87,11 @@ void MainWindow::toUser() {
     newSettingsWidget->show();
     newSettingsWidget->toUser();
     connect(newSettingsWidget, &SettingsWidget::refreshMainpage, this, &MainWindow::refreshPage);
+}
+
+void MainWindow::toWeather(){
+    mainWindowWeatherPage = new MainWindowWeather(this);
+    mainWindowWeatherPage->show();
 }
 
 MainWindow::~MainWindow()

@@ -6,11 +6,14 @@
 #include <QTextBrowser>
 #include <QGraphicsGridLayout>
 #include <QScrollArea>
+#include <QHBoxLayout>
 #include "helpwindow.h"
 #include "settingswidget.h"
 #include "radio.h"
 #include "user.h"
 #include "login.h"
+#include "./weather/mainwindowweather.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,6 +43,7 @@ public slots:
     void toMedia();
     void toUser();
     void refreshPage();
+    void toWeather();
 
 private:
     Ui::MainWindow *ui;
@@ -48,6 +52,7 @@ private:
     Radio *newMediaWidget;
     User *newUserWidget;
     LogIn *logInPage;
+    MainWindowWeather *mainWindowWeatherPage;
 };
 
 void createDatabaseAndUserTable();

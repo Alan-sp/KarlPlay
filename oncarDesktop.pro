@@ -18,12 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    draggablescrollarea.cpp \
     helpwindow.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
     radio.cpp \
+    scrollhome.cpp \
     settingswidget.cpp \
     signin.cpp \
     user.cpp \
@@ -31,11 +31,11 @@ SOURCES += \
     weather/mainwindowweather.cpp
 
 HEADERS += \
-    draggablescrollarea.h \
     helpwindow.h \
     login.h \
     mainwindow.h \
     radio.h \
+    scrollhome.h \
     settingswidget.h \
     signin.h \
     user.h \
@@ -43,7 +43,6 @@ HEADERS += \
     weather/mainwindowweather.h
 
 FORMS += \
-    draggablescrollarea.ui \
     helpwindow.ui \
     login.ui \
     mainwindow.ui \

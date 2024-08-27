@@ -7,13 +7,15 @@
 #include <QGraphicsGridLayout>
 #include <QScrollArea>
 #include <QHBoxLayout>
+#include <QScroller>
+#include <QHBoxLayout>
 #include "helpwindow.h"
 #include "settingswidget.h"
 #include "radio.h"
 #include "user.h"
 #include "login.h"
 #include "./weather/mainwindowweather.h"
-#include "draggablescrollarea.h"
+#include "scrollhome.h"
 
 
 QT_BEGIN_NAMESPACE

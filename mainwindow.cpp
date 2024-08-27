@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , mainWindowWeatherPage(nullptr)
 {
     ui->setupUi(this);
+
     setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     UserInfo.userID = 0;
     QRect screenGeometry = QApplication::desktop()->screenGeometry();
@@ -37,32 +38,68 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mediaButton, &QPushButton::clicked, this, &MainWindow::toMedia);
 
     //个人中心
-    // 创建并设置 DraggableScrollArea 实例
-    DraggableScrollArea *draggableScrollArea = new DraggableScrollArea(this);
+    // 创建并初始化 ScrollHome 实例
+    ScrollHome *scrollHome = new ScrollHome(this);
 
-    // 创建 appScrollAreaWidget 和布局
-    QWidget *appScrollAreaWidget = new QWidget(draggableScrollArea);
-    QHBoxLayout *appScrollAreaLayout = new QHBoxLayout(appScrollAreaWidget);
+    // 初始化 ScrollHome 的图标布局参数
+    int iconRow = 1;  // 每列显示的图标数量（即每一行只显示一个图标）
+    int iconSpacing = 20;  // 图标之间的间距
+    int widgetWidth = 4180;  // 容器宽度
+    int widgetHeight = 400;  // 容器高度
 
-    // 创建并连接 weatherButton
-    QPushButton *weatherButton = new QPushButton("Weather", this);
-    connect(weatherButton, &QPushButton::clicked, this, &MainWindow::toWeather);
-    appScrollAreaLayout->addWidget(weatherButton);
+    scrollHome->InitHome(iconRow, iconSpacing, widgetWidth, widgetHeight);
 
-    // 添加20个按钮到布局中
-    for (int i = 0; i < 20; ++i) {
-        QPushButton *button = new QPushButton(QString("Application %1").arg(i + 1));
-        button->setFixedSize(50, 50);  // 设置按钮大小
-        appScrollAreaLayout->addWidget(button);
+    // 添加应用图标按钮到 ScrollHome
+    for (int i = 0; i < g_appResSize; ++i) {
+        // 创建一个新的应用图标按钮
+        QPushButton *appButton = new QPushButton(scrollHome);
+        appButton->setText(g_appRes[i].appName);  // 设置按钮文本为应用名称
+        appButton->setIcon(QIcon(g_appRes[i].url));  // 设置按钮图标
+        appButton->setIconSize(QSize(64, 64));  // 设置图标大小
+        appButton->setFixedSize(400, 400);  // 设置按钮大小
+        appButton->setStyleSheet("QPushButton { background-color: #2ecc71; color: white; border-radius: 10px; }"
+                                 "QPushButton:pressed { background-color: #27ae60; }");
+
+        // 将按钮添加到 ScrollHome 的单元格中
+        int row = i % iconRow;
+        int column = i / iconRow;
+        scrollHome->setCellWidget(row, column, appButton);
+
+        // 设置每列的宽度，以适应按钮和间距
+        scrollHome->setColumnWidth(column, 420);
+
+        // 连接按钮的点击信号到后续要处理的应用程序加载逻辑
+        connect(appButton, &QPushButton::clicked, [=]() {
+            // 在这里处理点击后要执行的应用程序加载逻辑
+            qDebug() << "Application " << g_appRes[i].appName << " clicked!";
+            // 示例：在这里可以加载应用程序或显示相关内容
+        });
     }
 
-    // 设置布局为 appScrollAreaWidget 的布局
-    appScrollAreaWidget->setLayout(appScrollAreaLayout);
+    // 创建一个 QScrollArea 并将 ScrollHome 设置为其内容
+    QScrollArea *scrollArea = new QScrollArea(this);
+    scrollArea->setWidget(scrollHome);
+    scrollArea->setWidgetResizable(true);
 
-    // 将 widget 设置为 DraggableScrollArea 的内容
-    draggableScrollArea->setWidget(appScrollAreaWidget);
-    draggableScrollArea->setWidgetResizable(true);
-    draggableScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    // 禁止纵向滚动，只允许横向滚动
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);  // 禁止纵向滚动
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);  // 允许横向滚动
+
+    // 添加手势识别以实现更好的拖动体验
+    QScroller *scroller = QScroller::scroller(scrollArea->viewport());
+    scroller->grabGesture(scrollArea->viewport(), QScroller::LeftMouseButtonGesture);
+
+    // 设置滚动属性以优化滚动效果
+    QScrollerProperties properties;
+    properties.setScrollMetric(QScrollerProperties::MousePressEventDelay, 0);
+    properties.setScrollMetric(QScrollerProperties::FrameRate, QScrollerProperties::Fps60);
+    properties.setScrollMetric(QScrollerProperties::DragVelocitySmoothingFactor, 0.5);
+    properties.setScrollMetric(QScrollerProperties::OvershootDragResistanceFactor, 0.5);
+    properties.setScrollMetric(QScrollerProperties::OvershootScrollDistanceFactor, 0.2);
+    properties.setScrollMetric(QScrollerProperties::DecelerationFactor, 0.5);
+
+    // 应用滚动属性
+    scroller->setScrollerProperties(properties);
 
     // 获取原来 appScrollArea 的位置和大小
     QRect originalGeometry = ui->appScrollArea->geometry();
@@ -70,17 +107,26 @@ MainWindow::MainWindow(QWidget *parent)
     // 替换 ui 中的原有 appScrollArea
     QVBoxLayout *layout = qobject_cast<QVBoxLayout *>(ui->centralwidget->layout());
     if (layout) {
-        layout->replaceWidget(ui->appScrollArea, draggableScrollArea);
+        layout->replaceWidget(ui->appScrollArea, scrollArea);
     } else {
         // 如果没有布局，手动设置 geometry
-        draggableScrollArea->setGeometry(originalGeometry);
+        scrollArea->setGeometry(originalGeometry);
     }
 
     // 删除原有的 appScrollArea
     delete ui->appScrollArea;
 
-    // 更新指针到新的 DraggableScrollArea
-    ui->appScrollArea = draggableScrollArea;
+    // 更新指针到新的 scrollArea
+    scrollArea->setStyleSheet("QScrollArea { background-color: #000000; border: none; }");
+    ui->appScrollArea = scrollArea;
+    ui->appScrollArea->setStyleSheet(
+        "QScrollArea {"
+        "    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0.1, y2:0, stop:0 rgba(0, 0, 0, 0), stop:1 rgba(0, 0, 0, 255)),"
+        "                qlineargradient(spread:pad, x1:0.9, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0));"
+        "}"
+    );
+
+
 }
 
 

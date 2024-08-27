@@ -1,6 +1,7 @@
 QT       += core gui network
 QT       += sql
 QT       += multimedia multimediawidgets
+QT       += webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,6 +19,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    KarlMap/mapwidget.cpp \
+    KarlMap/webchannelobject.cpp \
     helpwindow.cpp \
     login.cpp \
     main.cpp \
@@ -31,6 +34,8 @@ SOURCES += \
     weather/mainwindowweather.cpp
 
 HEADERS += \
+    KarlMap/mapwidget.h \
+    KarlMap/webchannelobject.h \
     helpwindow.h \
     login.h \
     mainwindow.h \
@@ -43,6 +48,7 @@ HEADERS += \
     weather/mainwindowweather.h
 
 FORMS += \
+    KarlMap/mapwidget.ui \
     helpwindow.ui \
     login.ui \
     mainwindow.ui \
@@ -63,6 +69,9 @@ RESOURCES += \
     weather/mainwindow.qrc
 
 DISTFILES += \
+    KarlMap/map.html \
+    KarlMap/qwebchannel.js \
+    icon/map.jpg \
     video/images/K-Lite_Codec_Pack_1850_Basic.exe \
     video/images/angle-double-small-right.png \
     video/images/angle-left.png \

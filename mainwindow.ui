@@ -111,6 +111,14 @@
       <height>411</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QGraphicsView {
+    background-image: url(../oncarDesktop/carmodel.jpg); /* 使用本地图片路径 */
+    background-repeat: no-repeat; /* 不重复图片 */
+    background-position: center; /* 图片居中 */
+    background-size: cover; /* 图片按比例填充整个视图 */
+}</string>
+    </property>
    </widget>
    <widget class="QTextBrowser" name="userWidget">
     <property name="geometry">
@@ -154,16 +162,20 @@ p, li { white-space: pre-wrap; }
    <widget class="QTextBrowser" name="timeWidget">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>10</y>
-      <width>791</width>
-      <height>81</height>
+      <x>530</x>
+      <y>20</y>
+      <width>531</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QTextBrowser {
     background-color: #000000;  /* 黑色背景 */
     color: #FFFFFF;  /* 白色文字 */
+    font-size:48px;  /* 设置字体大小为32号 */
+    font-weight: bold;  /* 设置文字加粗 */
+    font-family: &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;  /* 设置字体，优先使用漂亮的 &quot;Segoe UI&quot; */
+    text-align: center;  /* 设置文字居中 */
 }</string>
     </property>
    </widget>
@@ -331,6 +343,33 @@ QPushButton:pressed {
      <string>媒体</string>
     </property>
    </widget>
+   <widget class="QTextBrowser" name="systemName">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>481</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTextBrowser {
+    background-color: #000000;  /* 黑色背景 */
+    color: #FFFFFF;  /* 白色文字 */
+    font-size:24px;  /* 设置字体大小为32号 */
+    font-weight: bold;  /* 设置文字加粗 */
+    font-family: &quot;Segoe UI&quot;, &quot;Arial&quot;, sans-serif;  /* 设置字体，优先使用漂亮的 &quot;Segoe UI&quot; */
+    text-align: center;  /* 设置文字居中 */
+}</string>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI','Arial','sans-serif'; font-size:24px; font-weight:600; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
    <zorder>appScrollArea</zorder>
    <zorder>askLLMButton</zorder>
    <zorder>helpButtonLeft</zorder>
@@ -345,6 +384,7 @@ QPushButton:pressed {
    <zorder>settingsButton</zorder>
    <zorder>userButton</zorder>
    <zorder>mediaButton</zorder>
+   <zorder>systemName</zorder>
   </widget>
  </widget>
  <resources/>

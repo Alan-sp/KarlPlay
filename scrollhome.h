@@ -21,7 +21,7 @@ public:
 };
 
 static AppRes g_appRes[]={
-    {"语音助手",":icon_settings"},
+    {"语音助手",":icon_shark"},
     {"天气",":icon_weather"},
     {"浏览器",":icon_liulanqi"},
     {"微聊",":icon_chat"},

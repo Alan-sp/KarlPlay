@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , newMediaWidget(nullptr)
     , newUserWidget(nullptr)
     , mainWindowWeatherPage(nullptr)
+    , mapWidgetPage(nullptr)
 {
     ui->setupUi(this);
 
@@ -38,6 +39,29 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mediaButton, &QPushButton::clicked, this, &MainWindow::toMedia);
 
     //个人中心
+    QPushButton *userButton = ui->userButton;
+    connect(userButton, &QPushButton::clicked, this, &MainWindow::toUser);
+
+    //导航
+    QPushButton *navigateButton = ui->navigateButton;
+    QPushButton *navigateHomeButton = ui->navigateHomeButton;
+    QPushButton *navigateWorkButton = ui->navigateWorkButton;
+    connect(navigateButton, &QPushButton::clicked, this, &MainWindow::toMap);
+    connect(navigateHomeButton, &QPushButton::clicked, this, &MainWindow::toMap);
+    connect(navigateWorkButton, &QPushButton::clicked, this, &MainWindow::toMap);
+
+    //时间
+    QDateTime currentTime = QDateTime::currentDateTime();
+    QString timeString = currentTime.toString("yyyy-MM-dd hh:mm:ss");
+    QTextBrowser *timeWidget = ui->timeWidget;
+    timeWidget->setText(timeString);
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MainWindow::updateTime);
+    timer->start(1000);
+
+    QTextBrowser *systemName = ui->systemName;
+    systemName->setText("KarlPlay车载系统\n尊贵的Karl车主，欢迎您！");
+
     // 创建并初始化 ScrollHome 实例
     ScrollHome *scrollHome = new ScrollHome(this);
 
@@ -73,6 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
             // 在这里处理点击后要执行的应用程序加载逻辑
             qDebug() << "Application " << g_appRes[i].appName << " clicked!";
             // 示例：在这里可以加载应用程序或显示相关内容
+            onAppButtonClicked(i);
         });
     }
 
@@ -161,9 +186,18 @@ void MainWindow::toWeather(){
     mainWindowWeatherPage->show();
 }
 
+void MainWindow::toMap(){
+    mapWidgetPage = new mapWidget(this);
+    mapWidgetPage->show();
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::onAppButtonClicked(int index){
+    qDebug() << "Application " << g_appRes[index].appName << " clicked!";
 }
 
 bool MainWindow::fetchUserInfo(int ID, struct UserInfo &userInfo) {
@@ -220,4 +254,12 @@ void MainWindow::refreshPage(){
     qDebug() << "信号已接收";
     ui->userWidget->setText("Welcome, WangYuxuan!");
     this->update();
+}
+
+void MainWindow::updateTime()
+{
+    QDateTime currentTime = QDateTime::currentDateTime();
+    QString timeString = currentTime.toString("yyyy-MM-dd hh:mm:ss");
+    QTextBrowser *timeWidget = ui->timeWidget;
+    timeWidget->setText(timeString);
 }

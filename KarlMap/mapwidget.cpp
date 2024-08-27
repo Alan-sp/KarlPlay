@@ -10,6 +10,8 @@
 #include <QFileInfo>
 #include <QUrl>
 #include <QDebug>
+#include <QScreen>
+#include <QGuiApplication>
 #include "webchannelobject.h"
 
 int mapWidget::op =-1;
@@ -25,22 +27,28 @@ mapWidget::mapWidget(QWidget *parent) :
     webChannel = new QWebChannel(this);
     view->page()->setWebChannel(webChannel);
 
-    QString filePath = "file:///home/alansp/KarlPlay/KarlMap/map.html";
+    QString filePath = "file:///home/user/Qtcode/oncarDesktop/KarlMap/map.html";
 
     QUrl url(filePath);
 
     page->load(url);
 
     webChannelObject = new WebChannelObject();
-    webChannel->registerObject(QStringLiteral("webChannelObject"),webChannelObject);
+    webChannel->registerObject(QStringLiteral("webChannelObject"), webChannelObject);
 
-    connect(ui->myPosition,&QPushButton::clicked,this,&mapWidget::getPosition);
-    connect(ui->pushButton,&QPushButton::clicked,this,&mapWidget::onButtonClicked);
-    connect(webChannelObject,&WebChannelObject::messageReceived,this,&mapWidget::receiveMessage);
-    connect(ui->chooseBtn0,&QPushButton::clicked,this,&mapWidget::onMapClicked0);
-    connect(ui->chooseBtn1,&QPushButton::clicked,this,&mapWidget::onMapClicked1);
+    connect(ui->myPosition, &QPushButton::clicked, this, &mapWidget::getPosition);
+    connect(ui->pushButton, &QPushButton::clicked, this, &mapWidget::onButtonClicked);
+    connect(webChannelObject, &WebChannelObject::messageReceived, this, &mapWidget::receiveMessage);
+    connect(ui->chooseBtn0, &QPushButton::clicked, this, &mapWidget::onMapClicked0);
+    connect(ui->chooseBtn1, &QPushButton::clicked, this, &mapWidget::onMapClicked1);
+
+    // 居中显示窗口
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect screenGeometry = screen->geometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    this->move(x, y);
 }
-
 void mapWidget::receiveMessage(const QString &message)
 {
     if(op==-1) return;

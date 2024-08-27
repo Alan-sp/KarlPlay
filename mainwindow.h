@@ -9,6 +9,9 @@
 #include <QHBoxLayout>
 #include <QScroller>
 #include <QHBoxLayout>
+#include <QDateTime>
+#include <QTextBrowser>
+#include <QTimer>
 #include "helpwindow.h"
 #include "settingswidget.h"
 #include "radio.h"
@@ -16,6 +19,7 @@
 #include "login.h"
 #include "./weather/mainwindowweather.h"
 #include "scrollhome.h"
+#include "./KarlMap/mapwidget.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -47,6 +51,9 @@ public slots:
     void toUser();
     void refreshPage();
     void toWeather();
+    void toMap();
+    void updateTime();
+    void onAppButtonClicked(int index);
 
 private:
     Ui::MainWindow *ui;
@@ -56,6 +63,7 @@ private:
     User *newUserWidget;
     LogIn *logInPage;
     MainWindowWeather *mainWindowWeatherPage;
+    mapWidget *mapWidgetPage;
 };
 
 void createDatabaseAndUserTable();

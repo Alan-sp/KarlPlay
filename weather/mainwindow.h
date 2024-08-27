@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QMovie>
 #include <QMainWindow>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -17,12 +18,12 @@ public:
     ~MainWindow();
 private slots:
     void on_searchButton_clicked();
-    void onWeatherDataReceived(QNetworkReply *reply);
+    void onWeatherDataReceived();
     void on_locateButton_clicked();  // 新增：定位按钮的槽函数
-    void onCityIdReceived(QNetworkReply *reply);
     void onMultiDayWeatherReceived();
+    void fetchMultiDayWeather(double lat, double lon);
     void updateTime();  // 更新当前时间
-    void fetchMultiDayWeather(const QString &cityId);
+
     void onLocationDataReceived();
 private:
     Ui::MainWindow *ui;
@@ -32,9 +33,11 @@ private:
     QString apiKey = "cc92bdf5e341f7b5fbb373824755bee9";
     QString cityName;  // 当前城市名称
     QString cityId;  // 当前城市ID
-
+    QMovie *backgroundMovie; // 用于播放背景 GIF 的 QMovie
     void fetchWeatherData(const QString &cityId);  // 获取天气数据
     void fetchCityId(const QString &cityName);  // 获取城市ID
+    void updateBackgroundImage(const QString &weatherCondition);
+    void setBlackGoldMixedLinearGradientBackground();
 };
 
 

@@ -49,6 +49,7 @@ void LogIn::checkLogin(const QString &username, const QString &password) {
                 qDebug() << record.fieldName(i) << ": " << record.value(i).toString();
             }
             QMessageBox::information(nullptr, "Login Success", "Login successful!");
+            refreshMainWindow();
             this->close();
             this->clean();
         } else {
@@ -69,4 +70,11 @@ void LogIn::checkLogin(const QString &username, const QString &password) {
 void LogIn::clean(){
     ui->usernameEdit->clear();
     ui->passwordEdit->clear();
+}
+
+void LogIn::refreshMainWindow(){
+    emit signalRefreshMainWindow();
+    QObject *tmp = this->parent()->parent()->parent();
+    tmp->setProperty("username", username);
+    qDebug() << tmp->property("username").toString();
 }

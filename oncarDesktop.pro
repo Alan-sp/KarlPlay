@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += sql
+QT       += multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +25,8 @@ SOURCES += \
     radio.cpp \
     settingswidget.cpp \
     signin.cpp \
-    user.cpp
+    user.cpp \
+    video/mainwindowvideo.cpp
 
 HEADERS += \
     helpwindow.h \
@@ -33,7 +35,8 @@ HEADERS += \
     radio.h \
     settingswidget.h \
     signin.h \
-    user.h
+    user.h \
+    video/mainwindowvideo.h
 
 FORMS += \
     helpwindow.ui \
@@ -42,9 +45,31 @@ FORMS += \
     radio.ui \
     settingswidget.ui \
     signin.ui \
-    user.ui
+    user.ui \
+    video/mainwindowvideo.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    video/images.qrc
+
+DISTFILES += \
+    video/images/K-Lite_Codec_Pack_1850_Basic.exe \
+    video/images/angle-double-small-right.png \
+    video/images/angle-left.png \
+    video/images/angle-right.png \
+    video/images/angle-small-right.png \
+    video/images/folder-open.png \
+    video/images/forward-fast.png \
+    video/images/forward.png \
+    video/images/home.png \
+    video/images/pause.png \
+    video/images/play.png \
+    video/images/rewind-button-circle.png \
+    video/images/rewind.png \
+    video/images/volume-down.png \
+    video/images/volume-mute.png \
+    video/images/wifi.png

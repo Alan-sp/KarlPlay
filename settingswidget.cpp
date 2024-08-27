@@ -23,6 +23,8 @@ SettingsWidget::~SettingsWidget()
 }
 
 void SettingsWidget::backMain(){
+    qDebug() << "按钮按下";
+    emit refreshMainpage();
     this->hide();
 }
 

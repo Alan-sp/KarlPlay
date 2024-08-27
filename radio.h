@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include "video/mainwindowvideo.h"
 
 namespace Ui {
 class Radio;
@@ -18,9 +19,11 @@ public:
 
 public slots:
     void toMain();
+    void toVideo();
 
 private:
     Ui::Radio *ui;
+    MainWindowVideo *mainWindowVideo;
 };
 
 #endif // RADIO_H

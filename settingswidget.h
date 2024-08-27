@@ -21,6 +21,8 @@ public slots:
     void backMain();
     void toUser();
 
+signals:
+    void refreshMainpage();
 
 private:
     Ui::SettingsWidget *ui;

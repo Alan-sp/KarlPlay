@@ -21,14 +21,16 @@ MainWindowWeather::MainWindowWeather(QWidget *parent)
     , networkManager(new QNetworkAccessManager(this))
     , timer(new QTimer(this))
 {
-   ui->setupUi(this);
+    ui->setupUi(this);
     setBlackGoldMixedLinearGradientBackground();
-    connect(timer, &QTimer::timeout, this, &MainWindow::updateTime);
+    connect(timer, &QTimer::timeout, this, &MainWindowWeather::updateTime);
     timer->start(1000);  // 每秒触发一次
-
-    connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onWeatherDataReceived);
-    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::on_searchButton_clicked);
-    connect(ui->locateButton, &QPushButton::clicked, this, &MainWindow::on_locateButton_clicked);
+    backgroundLabel = new QLabel(this);
+    backgroundLabel->setGeometry(this->rect());
+    backgroundLabel->lower();  // 放到最底层
+    connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindowWeather::onWeatherDataReceived);
+    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindowWeather::on_searchButton_clicked);
+    connect(ui->locateButton, &QPushButton::clicked, this, &MainWindowWeather::on_locateButton_clicked);
 
 
 }
@@ -117,10 +119,9 @@ void MainWindowWeather::fetchWeatherData(const QString &cityName)
 
     // 通过 networkManager 发起请求
     QNetworkReply *reply = networkManager->get(*request);
-    connect(reply, &QNetworkReply::finished, this, &MainWindow::onWeatherDataReceived);
+    connect(reply, &QNetworkReply::finished, this, &MainWindowWeather::onWeatherDataReceived);
 }
-
-void MainWindowWeather::onWeatherDataReceived(QNetworkReply *reply)
+void MainWindowWeather::onWeatherDataReceived()
 {
     QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
         if (!reply) {
@@ -148,6 +149,11 @@ void MainWindowWeather::onWeatherDataReceived(QNetworkReply *reply)
         ui->latitudeLabel->setText("纬度: " + QString::number(latitude));
         ui->longitudeLabel->setText("经度: " + QString::number(longitude));
         ui->regionLabel->setText("城市: " + cityName + ", " + country);
+        ui->weatherLabel->setStyleSheet("color: white;");
+        ui->temperatureLabel->setStyleSheet("color: white;");
+        ui->latitudeLabel->setStyleSheet("color: white;");
+        ui->longitudeLabel->setStyleSheet("color: white;");
+        ui->regionLabel->setStyleSheet("color: white;");
         updateBackgroundImage(weather);
         // 获取多日天气信息
         QString cityId = jsonObj["id"].toString();
@@ -175,14 +181,12 @@ void MainWindowWeather::on_locateButton_clicked()
     QNetworkReply *reply = networkManager->get(*request);
 
     // 连接信号与槽函数，处理网络请求完成后获取地理位置信息
-    connect(reply, &QNetworkReply::finished, this, &MainWindow::onLocationDataReceived);
+    connect(reply, &QNetworkReply::finished, this, &MainWindowWeather::onLocationDataReceived);
+
 }
-
-
-
 void MainWindowWeather::onLocationDataReceived()
 {
-     QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
+    QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
     if (!reply) {
         return;
     }
@@ -205,10 +209,9 @@ void MainWindowWeather::onLocationDataReceived()
     reply->deleteLater();
 }
 
-
-void MainWindowWeather::fetchMultiDayWeather(const QString &cityId)
+void MainWindowWeather::fetchMultiDayWeather(double lat, double lon)
 {
-  QString multiDayWeatherUrl = QString("https://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&exclude=hourly,minutely&appid=%3&units=metric")
+    QString multiDayWeatherUrl = QString("https://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&exclude=hourly,minutely&appid=%3&units=metric")
                                  .arg(lat)
                                  .arg(lon)
                                  .arg(apiKey);
@@ -217,10 +220,8 @@ void MainWindowWeather::fetchMultiDayWeather(const QString &cityId)
 
     QNetworkReply *reply = networkManager->get(*request);
 
-    connect(reply, &QNetworkReply::finished, this, &MainWindow::onMultiDayWeatherReceived);
+    connect(reply, &QNetworkReply::finished, this, &MainWindowWeather::onMultiDayWeatherReceived);
 }
-
-
 
 
 void MainWindowWeather::onMultiDayWeatherReceived()
@@ -252,8 +253,14 @@ void MainWindowWeather::onMultiDayWeatherReceived()
     reply->deleteLater();
 }
 
+
 void MainWindowWeather::updateTime()
 {
     QString currentTime = QDateTime::currentDateTime().toString("hh:mm:ss");
-    ui->timeLabel->setText("Current Time: " + currentTime);
+    ui->timeLabel->setText("当前时间: " + currentTime);
+    ui->timeLabel->setStyleSheet("color: white;");
 }
+
+
+
+

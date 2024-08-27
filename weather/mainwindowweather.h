@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QLabel>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindowWeather; }
 QT_END_NAMESPACE
@@ -16,7 +17,7 @@ public:
     MainWindowWeather(QWidget *parent = nullptr);
     ~MainWindowWeather();
 private slots:
-   void on_searchButton_clicked();
+    void on_searchButton_clicked();
     void onWeatherDataReceived();
     void on_locateButton_clicked();  // 新增：定位按钮的槽函数
     void onMultiDayWeatherReceived();
@@ -32,7 +33,8 @@ private:
     QString apiKey = "cc92bdf5e341f7b5fbb373824755bee9";
     QString cityName;  // 当前城市名称
     QString cityId;  // 当前城市ID
-    QMovie *backgroundMovie; // 用于播放背景 GIF 的 QMovie
+    QMovie *backgroundMovie;  // 用于显示GIF动画
+    QLabel *backgroundLabel;  // 用于显示背景GIF的标签
     void fetchWeatherData(const QString &cityId);  // 获取天气数据
     void fetchCityId(const QString &cityName);  // 获取城市ID
     void updateBackgroundImage(const QString &weatherCondition);

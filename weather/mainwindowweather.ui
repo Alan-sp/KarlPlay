@@ -23,6 +23,9 @@
       <height>51</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
+    </property>
     <property name="text">
      <string>天气</string>
     </property>
@@ -35,6 +38,9 @@
       <width>161</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
     </property>
     <property name="text">
      <string>温度</string>
@@ -49,6 +55,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
+    </property>
     <property name="text">
      <string>纬度</string>
     </property>
@@ -61,6 +70,9 @@
       <width>141</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
     </property>
     <property name="text">
      <string>地区</string>
@@ -88,6 +100,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
+    </property>
     <property name="text">
      <string>经度</string>
     </property>
@@ -100,6 +115,9 @@
       <width>161</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:white</string>
     </property>
     <property name="text">
      <string>时间</string>

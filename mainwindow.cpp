@@ -62,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 将 widget 设置为 DraggableScrollArea 的内容
     draggableScrollArea->setWidget(appScrollAreaWidget);
     draggableScrollArea->setWidgetResizable(true);
-    draggableScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    draggableScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // 获取原来 appScrollArea 的位置和大小
     QRect originalGeometry = ui->appScrollArea->geometry();
